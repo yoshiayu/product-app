@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<head>
+	<meta charset="UTF-8" />
+	<title>Dashboard</title>
+</head>
+<body>
+	<h1>Dashboard</h1>
+	<ul>
+		<li>商品数: <span th:text="${productCount}">0</span></li>
+		<li>ユーザー数: <span th:text="${userCount}">0</span></li>
+	</ul>
+
+	<p><a href="/">商品一覧へ</a></p>
+</body>
+</html>

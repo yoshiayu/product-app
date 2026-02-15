@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>商品編集</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header class="header">
+	<div class="header__left">
+		<h1>商品編集</h1>
+	</div>
+	<div class="header__right">
+		<div>ログインユーザー：<span th:text="${loginUserName}"></span></div>
+		<form th:action="@{/logout}" method="post">
+			<input type="hidden" th:if="${_csrf != null}"
+				   th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+			<button class="btn btn--sub">ログアウト</button>
+		</form>
+	</div>
+</header>
+
+<main class="container">
+
+	<section class="card">
+		<h2>編集フォーム</h2>
+
+		<form th:action="@{/products/{id}/update(id=${productId})}" method="post"
+			  th:object="${productForm}" class="form">
+			<input type="hidden" th:if="${_csrf != null}"
+				   th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+			<div class="form__row">
+				<label>商品名</label>
+				<input type="text" th:field="*{name}">
+				<div class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+			</div>
+
+			<div class="form__row">
+				<label>価格</label>
+				<input type="number" th:field="*{price}">
+				<div class="error" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
+			</div>
+
+			<div class="actions">
+				<button class="btn" type="submit">更新</button>
+				<a class="btn btn--sub" th:href="@{/}">戻る</a>
+			</div>
+
+		</form>
+	</section>
+
+</main>
+</body>
+</html>
